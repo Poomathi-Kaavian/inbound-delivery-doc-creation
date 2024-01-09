@@ -1,0 +1,128 @@
+{
+ "meta": {
+  "creator": "cds-dk 7.4.1"
+ },
+ "$version": "2.0",
+ "definitions": {
+  "sap.s4.beh.purchaseorder.v1.PurchaseOrder": {
+   "kind": "service",
+   "@cds.external": "true",
+   "@AsyncAPI.Extensions": {
+    "sap-catalog-spec-version": "1.0",
+    "sap-api-type": "EVENT"
+   },
+   "@AsyncAPI.ShortText": "Informs a remote system about created and changed purchase orders in an SAP S/4HANA Cloud tenant.",
+   "@AsyncAPI.StateInfo": {
+    "state": "active"
+   },
+   "@AsyncAPI.Title": "Purchase Order Events",
+   "@AsyncAPI.SchemaVersion": "1.0",
+   "@AsyncAPI.Description": "A purchase order is a document issued by a purchaser to a supplier indicating types, quantities, and agreed prices for products or services. The following events are available for purchase order\r\n\r\n * Created\r\n * Changed\r\n * Approved\r\n * Approval Rejected\r\n * Item Created\r\n * Item Changed\r\n * Item Deleted\r\n * Item Blocked\r\n * Item Unblocked\r\n\r\n"
+  },
+  "sap.s4.beh.purchaseorder.v1.PurchaseOrder.ApprovalRejected.v1": {
+   "kind": "event",
+   "@cds.external": "true",
+   "@topic": "sap/s4/beh/purchaseorder/v1/PurchaseOrder/ApprovalRejected/v1",
+   "elements": {
+    "PurchaseOrder": {
+     "type": "cds.LargeString"
+    }
+   }
+  },
+  "sap.s4.beh.purchaseorder.v1.PurchaseOrder.Approved.v1": {
+   "kind": "event",
+   "@cds.external": "true",
+   "@topic": "sap/s4/beh/purchaseorder/v1/PurchaseOrder/Approved/v1",
+   "elements": {
+    "PurchaseOrder": {
+     "type": "cds.LargeString"
+    }
+   }
+  },
+  "sap.s4.beh.purchaseorder.v1.PurchaseOrder.Changed.v1": {
+   "kind": "event",
+   "@cds.external": "true",
+   "@topic": "sap/s4/beh/purchaseorder/v1/PurchaseOrder/Changed/v1",
+   "elements": {
+    "PurchaseOrder": {
+     "type": "cds.LargeString"
+    }
+   }
+  },
+  "sap.s4.beh.purchaseorder.v1.PurchaseOrder.Created.v1": {
+   "kind": "event",
+   "@cds.external": "true",
+   "@topic": "sap/s4/beh/purchaseorder/v1/PurchaseOrder/Created/v1",
+   "elements": {
+    "PurchaseOrder": {
+     "type": "cds.LargeString"
+    }
+   }
+  },
+  "sap.s4.beh.purchaseorder.v1.PurchaseOrder.ItemBlocked.v1": {
+   "kind": "event",
+   "@cds.external": "true",
+   "@topic": "sap/s4/beh/purchaseorder/v1/PurchaseOrder/ItemBlocked/v1",
+   "elements": {
+    "PurchaseOrder": {
+     "type": "cds.LargeString"
+    },
+    "PurchaseOrderItem": {
+     "type": "cds.LargeString"
+    }
+   }
+  },
+  "sap.s4.beh.purchaseorder.v1.PurchaseOrder.ItemUnblocked.v1": {
+   "kind": "event",
+   "@cds.external": "true",
+   "@topic": "sap/s4/beh/purchaseorder/v1/PurchaseOrder/ItemUnblocked/v1",
+   "elements": {
+    "PurchaseOrder": {
+     "type": "cds.LargeString"
+    },
+    "PurchaseOrderItem": {
+     "type": "cds.LargeString"
+    }
+   }
+  },
+  "sap.s4.beh.purchaseorder.v1.PurchaseOrder.ItemChanged.v1": {
+   "kind": "event",
+   "@cds.external": "true",
+   "@topic": "sap/s4/beh/purchaseorder/v1/PurchaseOrder/ItemChanged/v1",
+   "elements": {
+    "PurchaseOrder": {
+     "type": "cds.LargeString"
+    },
+    "PurchaseOrderItem": {
+     "type": "cds.LargeString"
+    }
+   }
+  },
+  "sap.s4.beh.purchaseorder.v1.PurchaseOrder.ItemCreated.v1": {
+   "kind": "event",
+   "@cds.external": "true",
+   "@topic": "sap/s4/beh/purchaseorder/v1/PurchaseOrder/ItemCreated/v1",
+   "elements": {
+    "PurchaseOrder": {
+     "type": "cds.LargeString"
+    },
+    "PurchaseOrderItem": {
+     "type": "cds.LargeString"
+    }
+   }
+  },
+  "sap.s4.beh.purchaseorder.v1.PurchaseOrder.ItemDeleted.v1": {
+   "kind": "event",
+   "@cds.external": "true",
+   "@topic": "sap/s4/beh/purchaseorder/v1/PurchaseOrder/ItemDeleted/v1",
+   "elements": {
+    "PurchaseOrder": {
+     "type": "cds.LargeString"
+    },
+    "PurchaseOrderItem": {
+     "type": "cds.LargeString"
+    }
+   }
+  }
+ }
+}
