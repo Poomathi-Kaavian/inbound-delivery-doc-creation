@@ -1,10 +1,10 @@
 using purchaseOrder.inboundDeliveryDocCreation as model from '../db/schema';
-using API_PURCHASEORDER_PROCESS_SRV as externalBuPa from './external/API_PURCHASEORDER_PROCESS_SRV.csn';
+using API_PURCHASEORDER_PROCESS_SRV as externalPuOrder from './external/API_PURCHASEORDER_PROCESS_SRV.csn';
 
 @path:'service'
 service AdminService {
     @cds.persistence.skip
-    entity PurchaseOrder as projection on externalBuPa.A_PurchaseOrder {
+    entity PurchaseOrder as projection on externalPuOrder.A_PurchaseOrder {
         key PurchaseOrder,
             AddressCityName,
             AddressCountry,
@@ -23,3 +23,10 @@ service AdminService {
         BusinessPartnerID : String;
     }
 }
+
+annotate AdminService with @(requires : 'authenticated-user');
+
+annotate AdminService.PurchaseOrder with @(restrict : [{
+    grant : ['*'],
+    to    : 'POAdmin'
+}]);

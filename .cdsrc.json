@@ -28,7 +28,16 @@
       "API_PURCHASEORDER_PROCESS_SRV": {
         "kind": "odata-v2",
         "model": "srv/external/API_PURCHASEORDER_PROCESS_SRV"
+      },
+    "auth": {
+      "kind": "basic",
+      "users": {
+        "manager": {
+          "password": "123",
+          "roles": [ "POAdmin"]
+        }
       }
+    }
     }
   }
   

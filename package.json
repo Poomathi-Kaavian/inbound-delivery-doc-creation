@@ -29,8 +29,10 @@
   },
   "cds": {
     "requires": {
-      "auth": "xsuaa",
-      "db": "hana",
+      "uaa": {
+        "kind": "xsuaa",
+        "credentials": {}
+      },
       "messaging": {
         "kind": "file-based-messaging",
         "file": "../msg-box",

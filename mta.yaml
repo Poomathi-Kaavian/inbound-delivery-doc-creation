@@ -22,6 +22,7 @@ modules:
         properties:
           srv-url: ${default-url}
     requires:
+      - name: PurchaseOrder-auth
       - name: PurchaseOrder-db
       - name: PurchaseOrder-messaging
       - name: PurchaseOrder-destination
@@ -40,6 +41,7 @@ modules:
           name: srv-api # must be used in xs-app.json as well
           url: ~{srv-url}
           forwardAuthToken: true
+      - name: PurchaseOrder-auth
 
   - name: PurchaseOrder-db-deployer
     type: hdb
@@ -50,6 +52,15 @@ modules:
       - name: PurchaseOrder-db
 
 resources:
+  - name: PurchaseOrder-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: PurchaseOrder-${space}
+        tenant-mode: dedicated
   - name: PurchaseOrder-db
     type: com.sap.xs.hdi-container
     parameters:
