@@ -8,6 +8,7 @@
   "dependencies": {
     "@sap-cloud-sdk/connectivity": "^3.10.0",
     "@sap-cloud-sdk/core": "^1.54.2",
+    "@sap-cloud-sdk/generator": "^3.10.0",
     "@sap-cloud-sdk/http-client": "^3.10.0",
     "@sap-cloud-sdk/util": "^3.10.0",
     "@sap/cds": "^7",
@@ -46,6 +47,10 @@
       "API_PURCHASEORDER_PROCESS_SRV": {
         "kind": "odata-v2",
         "model": "srv/external/API_PURCHASEORDER_PROCESS_SRV"
+      },
+      "API_INBOUND_DELIVERY_SRV_0002": {
+        "kind": "odata-v2",
+        "model": "srv/external/API_INBOUND_DELIVERY_SRV_0002"
       }
     }
   }
