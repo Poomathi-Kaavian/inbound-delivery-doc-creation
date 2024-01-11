@@ -66,15 +66,17 @@ module.exports = class AdminService extends ApplicationService {
   getPurchaseOrderFromS4 = async (purchaseOrderID, req) => {
     try {
       const s4PurchaseOrder = await this.poSrv?.tx(req).run(
-        SELECT.one(this.poSrv.A_PurchaseOrder, (po) => {
+        SELECT.one('AdminService.PurchaseOrder', (po) => {
           po.PurchaseOrder, po.AddressHouseNumber, po.AddressCityName, po.AddressStreetName, po.AddressCountry, po.AddressPostalCode,po.Supplier;
         }).where({ PurchaseOrder: purchaseOrderID })
       );
+      console.log(s4PurchaseOrder, 's4PurchaseOrder');
       const s4PurchaseOrderItem = await this.poSrv?.tx(req).run(
-        SELECT.one(this.poSrv.A_PurchaseOrderItem, (po) => {
+        SELECT.one('AdminService.PurchaseOrderItem', (po) => {
           po.PurchaseOrder, po.DeliveryAddressCityName, po.DeliveryAddressCountry;
         }).where({ PurchaseOrder: purchaseOrderID })
       );
+      console.log(s4PurchaseOrderItem, 's4PurchaseOrderItem');
       return {s4PurchaseOrder:s4PurchaseOrder, s4PurchaseOrderItem:s4PurchaseOrderItem};
     } catch (error) {
       console.error(error);
@@ -84,7 +86,7 @@ module.exports = class AdminService extends ApplicationService {
 
   getLocalPurchaseOrder = async (purchaseOrderID, req) => {
     const localPurchaseOrder = await cds.tx(req).run(
-      SELECT.one(this.poSrv.A_PurchaseOrder, (po) => {
+      SELECT.one('AdminService.PurchaseOrder', (po) => {
         po.PurchaseOrder,
           po.AddressCityName,
           po.AddressCountry,
@@ -94,6 +96,7 @@ module.exports = class AdminService extends ApplicationService {
           po.Supplier
       }).where({ PurchaseOrder: purchaseOrderID })
     );
+    console.log(localPurchaseOrder, 'localPurchaseOrder');
     return localPurchaseOrder;
   }
 
@@ -102,12 +105,13 @@ module.exports = class AdminService extends ApplicationService {
     const purchaseOrderItem = {};
     Object.assign(purchaseOrder, puchaseOrders4);
     Object.assign(purchaseOrderItem, s4PurchaseOrderItem);
+    console.log(purchaseOrder, purchaseOrderItem);
     return {purchaseOrder, purchaseOrderItem};
   }
 
   createLocalPurchaseOrder = async (req, purchaseOrder, purchaseOrderItem) => {
-    const insertResult = await cds.tx(req).run(INSERT.into(this.poSrv.A_PurchaseOrder).entries(purchaseOrder));
-    const PurchaseOrderIteminsertResult = await cds.tx(req).run(INSERT.into(this.poSrv.A_PurchaseOrderItem).entries(purchaseOrderItem));
+    const insertResult = await cds.tx(req).run(INSERT.into('AdminService.PurchaseOrder').entries(purchaseOrder));
+    const PurchaseOrderIteminsertResult = await cds.tx(req).run(INSERT.into('AdminService.PurchaseOrderItem').entries(purchaseOrderItem));
     if (!insertResult || !PurchaseOrderIteminsertResult) {
       console.error(`ERROR: couldn't insert new purchase order entry for PurchaseOrder ${purchaseOrder.PurchaseOrder} , skip processing`);
       return false;
@@ -119,7 +123,8 @@ module.exports = class AdminService extends ApplicationService {
   updateLocalPurchaseOrder = async (req, purchaseOrder) => {
     try {
       cds.tx(async () => {
-        const updateResult = await cds.run(UPDATE.entity(this.poSrv.A_PurchaseOrder).set(purchaseOrder).where({ PurchaseOrder: purchaseOrder.PurchaseOrder }));
+        const updateResult = await cds.run(UPDATE.entity('AdminService.PurchaseOrder').set(purchaseOrder).where({ PurchaseOrder: purchaseOrder.PurchaseOrder }));
+        console.log(updateResult, 'updateResult');
         console.log(`Updating BusinessPartner ${purchaseOrder.PurchaseOrder} in SAP HANA Cloud`);
         if (!updateResult) return false;
       });
