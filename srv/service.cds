@@ -11,7 +11,14 @@ service AdminService {
             AddressCountry,
             AddressPostalCode,
             AddressStreetName,
-            AddressHouseNumber
+            AddressHouseNumber,
+            Supplier,        
+    }
+    
+    entity PurchaseOrderItem as projection on externalPuOrder.A_PurchaseOrderItem {
+        key PurchaseOrder,
+            DeliveryAddressCityName,
+            DeliveryAddressCountry,        
     }
 
     @topic : 'poc/PurchaseOrder/em/ce/sap/s4/beh/purchaseorder/v1/PurchaseOrder/Created/v1'

@@ -23,10 +23,12 @@
   },
   "devDependencies": {
     "@cap-js/sqlite": "^1",
-    "@sap/cds-dk": "^7"
+    "@sap/cds-dk": "^7",
+    "@sap/ux-specification": "^1.120.1"
   },
   "scripts": {
-    "start": "cds-serve"
+    "start": "cds-serve",
+    "watch-purchase-order": "cds watch --open purchase-order/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "cds": {
     "requires": {
@@ -53,5 +55,8 @@
         "model": "srv/external/API_INBOUND_DELIVERY_SRV_0002"
       }
     }
-  }
+  },
+  "sapux": [
+    "app/purchase-order"
+  ]
 }

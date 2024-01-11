@@ -401,7 +401,7 @@ export class PurchaseOrder<T extends DeSerializers = DefaultDeSerializers>
   }
 }
 
-export interface +++++++++++++<
+export interface PurchaseOrderType<
   T extends DeSerializers = DefaultDeSerializers
 > {
   purchaseOrder: DeserializedType<T, 'Edm.String'>;
